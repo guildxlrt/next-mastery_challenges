@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,64 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <header className="z-50 sticky top-0 w-full h-[120px] bg-gray-800 text-white flex items-center justify-start">
+          <Link href="/" className="hover:underline">
+            <img
+              src="/logo.svg"
+              alt="FRAN logo"
+              className="h-[120px] w-auto mr-4"
+            />
+          </Link>
+
+          <nav className="flex space-x-4">
+            <Link href="/news" className="hover:underline">
+              News
+            </Link>
+            <Link href="/opinions" className="hover:underline">
+              Opignions
+            </Link>
+            <Link href="/commentary" className="hover:underline">
+              Commentaire
+            </Link>
+            <Link href="/podcasts" className="hover:underline">
+              Podcasts Video
+            </Link>
+            <Link href="/about" className="hover:underline">
+              A Propos
+            </Link>
+          </nav>
+        </header>
+
+        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+          {children}
+
+          <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
+            <Link
+              className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+              href="/news"
+              // target="_blank"
+              rel="noopener noreferrer"
+            >
+              News
+            </Link>
+            <Link
+              className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+              href="/"
+              // target="_blank"
+              rel="noopener noreferrer"
+            >
+              Views
+            </Link>
+            <Link
+              className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+              href="/about"
+              // target="_blank"
+              rel="noopener noreferrer"
+            >
+              A propos de FRAN
+            </Link>
+          </footer>
+        </div>
       </body>
     </html>
   );
